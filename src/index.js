@@ -2,6 +2,7 @@ angular
   .module('app', ['ui.router'])
   .controller("WizardController", function($state){
   	var vm = this;
+    
         
         //Model
         vm.currentStep = 1;
@@ -42,10 +43,11 @@ angular
         //Functions
         vm.gotoStep = function(newStep) {
           	for (var i = 0; i < vm.steps.length; i++) {
-				if (newStep == vm.steps[i].step) {
-          			$state.transitionTo(vm.steps[i].state, {arg:'arg'});
-				}
-			}
+              vm.currentStep = newStep;
+      				if (newStep == vm.steps[i].step) {
+                			$state.transitionTo(vm.steps[i].state, {arg:'arg'});
+      				}
+      			}
         }
         
         vm.getStepTemplate = function(){
